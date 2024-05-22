@@ -1,0 +1,18 @@
+@if (result==0) {
+  <div class="p-5 flex flex-col gap-5">
+    <span class="flex flex-row items-center font-bold"><img src="./assets/images/icons/congrats.svg" class="w-10" alt="">Muchas felicidades!</span>
+    <span></span>
+    <div class="w-full flex flex-row gap-2 justify-center">
+      <button mat-stroked-button color="primary" mat-dialog-close (click)="checkActivity(data.currentId,totalScore)">Continuar</button>
+    </div>
+  </div>
+}@else {
+    <div class="p-2 flex flex-col gap-2">
+    <span class="flex flex-row items-center font-bold"><img src="./assets/images/icons/warn.svg" class="w-10" alt="">Atención</span>
+      <span>Faltan respuesta por introducir en la actividad y se descalificará la misma. ¿Desea continuar?</span>
+      <div class="w-full flex flex-row gap-2 justify-end">
+        <button mat-stroked-button color="warn" mat-dialog-close>No</button>
+        <button mat-stroked-button color="primary" mat-dialog-close (click)="scoreDialog()">Si</button>
+      </div>
+    </div>
+  }

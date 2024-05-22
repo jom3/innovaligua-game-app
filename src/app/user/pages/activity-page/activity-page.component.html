@@ -1,0 +1,38 @@
+<div class="w-full h-full flex justify-center items-center px-20">
+  <table class="w-full bg-gray-300 p-2">
+    <tr class="text-center">
+      <th class="px-2 py-4 text-black uppercase bg-green-500">N°</th>
+      <th class="px-2 py-4 text-black uppercase bg-green-500">Actividad</th>
+      <th class="px-2 py-4 text-black uppercase bg-green-500">Intentos Faltantes</th>
+      <th class="px-2 py-4 text-black uppercase bg-green-500">Calificación</th>
+      <th class="px-2 py-4 text-black uppercase bg-green-500">Acciones</th>
+    </tr>
+    @for (activity of activities(); track activity.id; let index = $index) {
+    <tr class="text-center">
+        <td class="px-2 py-4 uppercase">{{index+1}}</td>
+        <td class="px-2 py-4 uppercase">{{activity.type}}</td>
+        <td class="px-2 py-4 uppercase text-green-700 font-bold" [ngClass]="{'text-red-700': activity.attempts==0}">{{activity.attempts>0 ? activity.attempts:'No'}}</td>
+        <td class="px-2 py-4 uppercase"><star-score score={{activity.max_score}}/></td>
+        <td class="px-2 py-4 uppercase flex justify-center">
+          @switch (activity.state) {
+            @case (0) {
+              @if (activity.max_score<=59) {
+                <img src="./assets/images/icons/wrong.svg" alt="" class="w-10 h-10" matTooltip="Actividad fallida">
+              }@else {
+                <img src="./assets/images/icons/nice.svg" alt="" class="w-10 h-10" matTooltip="Actividad calificada">
+              }
+            }
+            @case (2) {
+              <img src="./assets/images/icons/nice.svg" alt="" class="w-10 h-10" matTooltip="Actividad calificada">
+            }
+            @default {
+              <button class="w-full h-full flex justify-center items-center" matTooltip="Comenzar actividad" (click)="goToGame(activity.id)">
+                <img src="./assets/images/icons/waiting.svg" alt="" class="w-10 h-10">
+              </button>
+            }
+          }
+        </td>
+      </tr>
+    }
+  </table>
+</div>

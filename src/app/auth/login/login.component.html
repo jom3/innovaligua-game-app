@@ -1,0 +1,24 @@
+<div class="w-full h-full flex justify-center items-center">
+  <form class="p-10 bg-gray-300 rounded-xl flex flex-col items-center gap-5" (submit)="onSubmit()" [formGroup]="loginForm">
+    <h1 class="text-center uppercase text-[#2d2d2d] font-bold">Iniciar sesión</h1>
+    <hr>
+    <mat-form-field class="w-80">
+      <mat-label>USUARIO</mat-label>
+      <input matInput type="text" formControlName="username">
+      <mat-hint></mat-hint>
+      @if (this.loginForm.controls.username.invalid) {
+        <mat-error>EL usuario es <strong>requerido</strong></mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field class="w-80">
+      <mat-label>CONTRASEÑA</mat-label>
+      <input matInput type="password" formControlName="password">
+      <mat-hint></mat-hint>
+      @if (this.loginForm.controls.username.invalid) {
+        <mat-error>La contraseña es <strong>requerida</strong></mat-error>
+      }
+    </mat-form-field>
+    <button mat-raised-button color="primary">Ingresar</button>
+  </form>
+</div>
+
